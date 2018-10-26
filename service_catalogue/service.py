@@ -2,13 +2,20 @@
 
 """Backend methods for handling service API requests."""
 
+from pymongo import MongoClient
+
 
 class Service(object):
 
-    def get(self, serviceId):
+    def __init__(self):
+        client = MongoClient()
+        self.db = client.admin
 
+    def get(self, serviceId):
+        tstt = self.db.command("serverStatus")
         result = {
            'message': 'Get service with serviceId: {}'.format(serviceId),
+           'db_status': tst,
         }
         print(result)
         return result
