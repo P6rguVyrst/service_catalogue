@@ -34,9 +34,11 @@ clean: clean-build clean-pyc clean-test ## remove all build, test, coverage and 
 clean-build: ## remove build artifacts
 	rm -fr build/
 	rm -fr dist/
+	rm -fr venv/
 	rm -fr .eggs/
 	find . -name '*.egg-info' -exec rm -fr {} +
 	find . -name '*.egg' -exec rm -f {} +
+	rm -rf *.log*
 
 clean-pyc: ## remove Python file artifacts
 	find . -name '*.pyc' -exec rm -f {} +
@@ -49,6 +51,12 @@ clean-test: ## remove test and coverage artifacts
 	rm -f .coverage
 	rm -fr htmlcov/
 	rm -fr .pytest_cache
+
+venv:
+	virtualenv --python=python3 venv && venv/bin/python setup.py develop
+
+run: venv
+	FLASK_APP=service_catalogue/app SERVICE_CATALOGUE_SETTINGS=../settings.cfg venv/bin/flask run
 
 lint: ## check style with flake8
 	flake8 service_catalogue tests

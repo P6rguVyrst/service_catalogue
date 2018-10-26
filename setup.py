@@ -11,11 +11,16 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = ['Click>=6.0', ]
-
-setup_requirements = ['pytest-runner', ]
-
-test_requirements = ['pytest', ]
+requirements = [
+    'Click>=6.0',
+    'flask',
+]
+setup_requirements = [
+    'pytest-runner',
+]
+test_requirements = [
+    'pytest',
+]
 
 setup(
     author="Toomas Ormisson",
@@ -45,7 +50,10 @@ setup(
     include_package_data=True,
     keywords='service_catalogue',
     name='service_catalogue',
-    packages=find_packages(include=['service_catalogue']),
+    packages=[
+        'service_catalogue',
+        'service_catalogue.web',
+    ],
     setup_requires=setup_requirements,
     test_suite='tests',
     tests_require=test_requirements,
