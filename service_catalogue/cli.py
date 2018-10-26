@@ -3,7 +3,7 @@
 """Console script for service_catalogue."""
 import sys
 import click
-from .service import Service
+from .service import ServiceInterface
 
 
 # TODO:
@@ -21,7 +21,7 @@ def main(method, **kwargs):
     #           "service_catalogue.cli.main")
     # click.echo("See click documentation at http://click.pocoo.org/")
 
-    service = Service()
+    service = ServiceInterface()
     router = {
         "add-service": service.add,
         "delete-service": service.delete,

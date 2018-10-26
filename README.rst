@@ -22,6 +22,12 @@ API for IT services.
 * Free software: MIT license
 * Documentation: https://service-catalogue.readthedocs.io.
 
+Getting started
+---------------
+API: make run
+CLI: 
+    service_catalogue add-service --service_id=111
+    service_catalogue get-service --service_id=5bd338ef2a45ff72cb2ce4df
 
 Features
 --------
