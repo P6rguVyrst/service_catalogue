@@ -21,7 +21,7 @@ if not app.debug:
         logging.Formatter('<%(asctime)s> <%(levelname)s> %(message)s'))
     app.logger.addHandler(file_handler)
 
-import service_catalogue.views
+import service_catalogue.web.service
 
 
 if __name__ == "__main__":
