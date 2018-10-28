@@ -21,6 +21,17 @@ def index():
 
 @app.route("/service", methods=['GET', 'POST'])
 def add_service():
+    #d = {
+    #    'name': 'Logging service',
+    #    'status': 'In Development',
+    #    'environment': 'TEST',
+    #    'business_owner': ['toomas.ormisson'],
+    #    'technical_owner': ['toomas.ormisson'],
+    #    'profit_center': 'IT',
+    #    'cost_center': 'IT',
+    #    'support_team': 'Infrastructure Team',
+    #}
+
     return "Add service."
 
 

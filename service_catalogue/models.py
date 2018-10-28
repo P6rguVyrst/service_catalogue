@@ -7,7 +7,7 @@ import json
 
 class ServiceVerifier(object):
 
-    def environment(self, env):
+    def verify_environment(self, env):
         accepted_values = [
             "DEV",
             "TEST",
@@ -20,9 +20,9 @@ class ServiceVerifier(object):
         if not name:
             raise MissingRequiredArgumentException("Missing name")
 
-    def service_status(self, status):
+    def verify_service_status(self, status):
         if not status:
-            raise InvalidEnvironmentError()
+            raise MissingRequiredArgumentException("Missing name")
 
 
 class MyEncoder(json.JSONEncoder):
@@ -63,12 +63,22 @@ class Service(ServiceVerifier):
 
     @status.setter
     def status(self, value):
-        #self.verify.service_status(value)
+        self.verify.service_status(value)
         self._status = value
 
     @status.deleter
     def status(self):
         del self._status
 
-
-
+    def to_dict(self):
+        # TODO: do better, without having to declare all service properties here.
+        return {
+            'name': self._name,
+            'status': self._status,
+            'environment': self._environment,
+            'business_owner': self._business_owner,
+            'technical_owner': self._technical_owner,
+            'profit_center': self._profit_center,
+            'cost_center': self._cost_center,
+            'support_team': self._support_team,
+        }

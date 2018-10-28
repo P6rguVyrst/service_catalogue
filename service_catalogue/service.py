@@ -41,28 +41,14 @@ class ServiceInterface(object):
     def add(self, data):
         # call service builder
         d = json.loads(data)
-        #d = {
-        #    'name': 'Logging service',
-        #    'status': 'In Development',
-        #    'environment': 'TEST',
-        #    'business_owner': ['toomas.ormisson'],
-        #    'technical_owner': ['toomas.ormisson'],
-        #    'profit_center': 'IT',
-        #    'cost_center': 'IT',
-        #    'support_team': 'Infrastructure Team',
-        #}
-        # TODO: Fix service object not to insert _ values to database.
-        s = Service()
-        s.name = d.get('name')
-        s.status = d.get('status')
-
-        #s.environment = d['']
-        #s.status = d['']
-        r = self.db.service.insert_one(s.__dict__)
+        service = Service()
+        service.name = d.get('name')
+        service.status = d.get('status')
+        r = self.db.service.insert_one(service.to_dict())
+        print(service)
+        print(service.to_dict())
         print(r.inserted_id)
         print(r.acknowledged)
-
-        #pp(s.__dict__)
 
         result = {
             'message': 'Added a new service service',
