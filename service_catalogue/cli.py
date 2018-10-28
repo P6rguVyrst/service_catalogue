@@ -7,9 +7,8 @@ from .service import ServiceInterface
 
 
 # TODO:
-#   - MongoDB
 #   - Service architecture
-
+#   - named arguments
 
 @click.command()
 @click.argument('method')
@@ -23,10 +22,11 @@ def main(method, **kwargs):
 
     service = ServiceInterface()
     router = {
+
         "add-service": service.add,
-        "delete-service": service.delete,
         "get-service": service.get,
         "modify-service": service.modify,
+        "delete-service": service.delete,
     }
     args = [v for v in kwargs.values() if v]
     return router[method](*args)

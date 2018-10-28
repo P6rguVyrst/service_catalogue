@@ -34,6 +34,7 @@ def service_actions(serviceId):
 
     data = [doc for doc in result]
     print(data)
+    # TODO: raise error if no data
     r = {
         'result': data,
         'message': "Get, modify and delete following service: {}".format(serviceId),

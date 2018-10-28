@@ -26,8 +26,12 @@ Getting started
 ---------------
 API: make run
 CLI: 
-    service_catalogue add-service --service_id=111
+    service_catalogue add-service --data='{"name": "Hello World service"}'
     service_catalogue get-service --service_id=5bd338ef2a45ff72cb2ce4df
+    service_catalogue modify-service --service_id=5bd338ef2a45ff72cb2ce4df --data='{"name": "Hello 112"}'
+    service_catalogue delete-service --service_id=5bd338ef2a45ff72cb2ce4df
+
+
 
 Features
 --------

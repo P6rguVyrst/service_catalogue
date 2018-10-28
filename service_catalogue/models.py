@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from .exceptions import (
     InvalidEnvironmentError,
+    MissingRequiredArgumentException,
 )
 import json
 
@@ -15,9 +16,9 @@ class ServiceVerifier(object):
         if env not in accepted_values:
             raise InvalidEnvironmentError()
 
-    def service_name(self, name):
+    def verify_service_name(self, name):
         if not name:
-            raise InvalidEnvironmentError()
+            raise MissingRequiredArgumentException("Missing name")
 
     def service_status(self, status):
         if not status:
@@ -28,7 +29,7 @@ class MyEncoder(json.JSONEncoder):
     def default(self, o):
         return {k.lstrip('_'): v for k, v in vars(o).items()}
 
-class Service(object):
+class Service(ServiceVerifier):
 
     def __init__(self):
         #self.verify = ServiceVerifier()
@@ -48,7 +49,7 @@ class Service(object):
 
     @name.setter
     def name(self, value):
-        #self.verify.service_name(value)
+        self.verify_service_name(value)
         self._name = value
 
     @name.deleter
